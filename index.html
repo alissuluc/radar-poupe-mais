@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Poupe Mais | Receba as melhores ofertas antes de todo mundo</title>
+    <meta name="description" content="Comunidade gratuita focada em custo-benefício. Receba cupons e descontos reais do Mercado Livre, Shopee e Amazon direto no seu Telegram.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variáveis de Cor (Baseadas na Logo) */
+        :root {
+            --primary: #D30C14; /* Vermelho Radar */
+            --primary-hover: #b80a11;
+            --accent: #FFD600; /* Amarelo Oferta */
+            --accent-hover: #e6c100;
+            --bg-white: #FFFFFF;
+            --bg-light: #F8F9FA;
+            --text-main: #1F2937;
+            --text-muted: #4B5563;
+            --border-color: #E5E7EB;
+        }
+
+        /* Reset Básico */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-main); 
+            background-color: var(--bg-white); 
+            line-height: 1.6; 
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        .container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 0 24px; 
+        }
+
+        /* Tipografia */
+        h1 { font-size: 3rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 20px; color: #111827; }
+        h1 span { color: var(--primary); }
+        h2 { font-size: 2.25rem; font-weight: 800; margin-bottom: 40px; text-align: center; color: #111827; letter-spacing: -0.02em; }
+        .subtitle { font-size: 1.125rem; color: var(--text-muted); margin-bottom: 32px; max-width: 580px; }
+
+        /* Botões */
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 16px 36px; 
+            font-weight: 700; 
+            border-radius: 12px; 
+            transition: all 0.2s ease; 
+            cursor: pointer; 
+            border: none; 
+            font-size: 1.125rem; 
+            text-align: center; 
+            gap: 8px;
+        }
+        .btn-accent { 
+            background-color: var(--accent); 
+            color: #111827; 
+            box-shadow: 0 4px 14px 0 rgba(255, 214, 0, 0.39); 
+        }
+        .btn-accent:hover { 
+            background-color: var(--accent-hover); 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(255, 214, 0, 0.4); 
+        }
+        .btn-outline { 
+            border: 2px solid var(--border-color); 
+            color: var(--text-main); 
+            background: transparent; 
+            padding: 10px 24px; 
+            font-size: 1rem; 
+            border-radius: 8px; 
+            font-weight: 600;
+        }
+        .btn-outline:hover { 
+            border-color: var(--primary); 
+            color: var(--primary); 
+            background: rgba(211, 12, 20, 0.05);
+        }
+
+        /* Header */
+        header { 
+            padding: 20px 0; 
+            border-bottom: 1px solid var(--border-color); 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(8px);
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo-area { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; color: #111827; }
+        .logo-icon { 
+            width: 36px; height: 36px; 
+            background-color: var(--primary); 
+            border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            position: relative;
+        }
+        .logo-icon::after {
+            content: '';
+            width: 14px; height: 14px;
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            position: absolute;
+        }
+        .logo-icon::before {
+            content: '';
+            width: 24px; height: 24px;
+            border: 3px solid rgba(255, 214, 0, 0.4);
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            position: absolute;
+            transform: rotate(-45deg);
+        }
+
+        /* Hero Section */
+        .hero { padding: 90px 0; display: flex; align-items: center; gap: 60px; background: linear-gradient(to bottom, #ffffff, #f9fafb); }
+        .hero-text { flex: 1; }
+        .hero-image { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; }
+        .hero-badge { 
+            display: inline-block; padding: 6px 12px; background: rgba(211, 12, 20, 0.1); 
+            color: var(--primary); border-radius: 20px; font-size: 0.875rem; font-weight: 600; 
+            margin-bottom: 24px;
+        }
+        
+        .hero-image-mockup {
+            width: 100%; max-width: 380px; aspect-ratio: 9/16; 
+            background: #111827; border-radius: 32px; 
+            border: 12px solid #1F2937;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: flex; flex-direction: column; overflow: hidden;
+            position: relative;
+        }
+        .mockup-header { background: #1F2937; padding: 16px; color: white; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #374151; }
+        .mockup-avatar { width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); font-weight: bold; }
+        .mockup-body { padding: 16px; flex: 1; background: #E5E5EA; display: flex; flex-direction: column; gap: 16px; }
+        .mockup-msg { background: white; padding: 12px; border-radius: 12px; border-top-left-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); font-size: 0.875rem; }
+        .mockup-msg span { display: block; font-weight: bold; color: var(--primary); margin-bottom: 4px; }
+        .mockup-msg .price { font-size: 1.25rem; font-weight: 800; color: #111827; margin: 8px 0; }
+        
+        .hero-bullets { margin-bottom: 32px; }
+        .hero-bullets li { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-weight: 500; color: #374151; font-size: 1.05rem; }
+        .check-icon { 
+            background: #10B981; color: white; width: 20px; height: 20px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 0.75rem; font-weight: bold;
+        }
+        .social-proof { margin-top: 16px; font-size: 0.875rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+
+        /* How it Works */
+        .how-it-works { padding: 100px 0; background-color: var(--bg-white); }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 56px; }
+        .step-card { text-align: center; position: relative; }
+        .step-number { 
+            width: 56px; height: 56px; background-color: var(--bg-light); color: var(--primary); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 1.5rem; font-weight: 800; margin: 0 auto 24px auto;
+            border: 2px solid var(--primary);
+        }
+        .step-card h3 { margin-bottom: 12px; font-size: 1.25rem; color: #111827; }
+        .step-card p { color: var(--text-muted); }
+        
+        /* Conector (desktop only) */
+        @media (min-width: 769px) {
+            .step-card:not(:last-child)::after {
+                content: ''; position: absolute; top: 28px; right: -50%; width: 100%; height: 2px;
+                background: dashed 2px var(--border-color); z-index: -1;
+            }
+        }
+
+        /* Features */
+        .features { padding: 100px 0; background-color: var(--bg-light); }
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .feature-item { 
+            background: var(--bg-white); padding: 40px; border-radius: 16px; 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); 
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s;
+        }
+        .feature-item:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border-color: #D1D5DB; }
+        .feature-icon { 
+            width: 48px; height: 48px; background: rgba(211, 12, 20, 0.1); color: var(--primary); 
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; 
+            font-size: 1.5rem; margin-bottom: 24px; font-weight: bold;
+        }
+        .feature-item h3 { margin-bottom: 12px; font-size: 1.25rem; color: #111827; }
+        .feature-item p { color: var(--text-muted); }
+
+        /* Share Section (Espalhe o Radar) */
+        .share-section { padding: 100px 0; background-color: var(--bg-white); text-align: center; }
+        .share-box { 
+            max-width: 600px; margin: 0 auto; background: #111827; color: #F9FAFB; 
+            padding: 40px; border-radius: 20px; text-align: left; 
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); 
+            position: relative; overflow: hidden;
+        }
+        .share-box::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        .share-box h3 { margin-bottom: 16px; font-size: 1.5rem; }
+        .share-box p { color: #9CA3AF; margin-bottom: 24px; }
+        .share-text { 
+            background: #1F2937; padding: 20px; border-radius: 8px; font-family: monospace; 
+            font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px; border: 1px solid #374151; 
+            white-space: pre-wrap; color: #D1D5DB;
+        }
+        .btn-copy { 
+            background-color: #374151; color: white; width: 100%; border: 1px solid #4B5563; 
+            font-size: 1rem; padding: 14px;
+            cursor: pointer; border-radius: 8px; transition: all 0.2s;
+        }
+        .btn-copy:hover { background-color: #4B5563; border-color: #6B7280; }
+        .copy-feedback { color: #10B981; font-weight: 600; font-size: 0.875rem; display: none; text-align: center; margin-top: 12px; }
+
+        /* Mobile Float Share Button */
+        .float-share-btn { 
+            position: fixed; bottom: 24px; right: 24px; background-color: var(--primary); 
+            color: white; width: 60px; height: 60px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; 
+            box-shadow: 0 10px 15px -3px rgba(211, 12, 20, 0.4); cursor: pointer; 
+            z-index: 1000; border: none; transition: transform 0.2s; display: none; 
+        }
+        .float-share-btn:hover { transform: scale(1.05); }
+
+        /* Modal Mobile Share (Fallback) */
+        .modal-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); 
+            display: none; align-items: center; justify-content: center; z-index: 2000; 
+        }
+        .modal { background: white; padding: 32px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; position: relative; }
+        .modal-close { position: absolute; top: 16px; right: 16px; background: transparent; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+        .modal h3 { margin-bottom: 24px; font-size: 1.25rem; color: #111827; }
+        .modal-options { display: flex; flex-direction: column; gap: 12px; }
+        .modal-btn { 
+            display: flex; align-items: center; justify-content: center; gap: 12px; 
+            padding: 14px; border-radius: 12px; border: 1px solid var(--border-color); 
+            background: var(--bg-white); color: var(--text-main); font-weight: 600; 
+            font-size: 1rem; cursor: pointer; transition: background 0.2s; 
+        }
+        .modal-btn:hover { background: var(--bg-light); }
+
+        /* FAQ */
+        .faq { padding: 100px 0; background-color: var(--bg-light); }
+        .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+        .faq-item { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
+        .faq-question { 
+            padding: 24px; font-weight: 600; font-size: 1.125rem; display: flex; 
+            justify-content: space-between; align-items: center; cursor: pointer; 
+            background: transparent; border: none; width: 100%; text-align: left; color: #111827; 
+        }
+        .faq-question::after { content: '+'; font-size: 1.5rem; color: var(--primary); font-weight: 400; transition: transform 0.3s; }
+        .faq-item.active .faq-question::after { transform: rotate(45deg); }
+        .faq-answer { padding: 0 24px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; color: var(--text-muted); }
+        .faq-item.active .faq-answer { padding: 0 24px 24px 24px; max-height: 200px; }
+
+        /* Footer */
+        footer { background-color: #111827; color: #9CA3AF; padding: 60px 0 32px 0; text-align: center; }
+        .footer-logo { font-size: 1.5rem; font-weight: 800; color: white; margin-bottom: 24px; display: inline-flex; align-items: center; gap: 8px; }
+        .footer-logo-icon {
+            width: 28px; height: 28px; background-color: var(--primary); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; position: relative;
+        }
+        .footer-logo-icon::after {
+            content: ''; width: 10px; height: 10px; border: 2px solid var(--accent); border-radius: 50%; position: absolute;
+        }
+        .disclaimer { font-size: 0.875rem; max-width: 600px; margin: 0 auto 32px auto; opacity: 0.7; }
+        .copyright { font-size: 0.875rem; border-top: 1px solid #374151; padding-top: 32px; }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.25rem; }
+            h2 { font-size: 1.875rem; }
+            .hero { flex-direction: column; padding: 50px 0; text-align: center; gap: 40px; }
+            .hero-badge { margin: 0 auto 24px auto; }
+            .hero-bullets { max-width: 320px; margin: 0 auto 32px auto; text-align: left; }
+            .social-proof { justify-content: center; }
+            .steps { grid-template-columns: 1fr; gap: 32px; margin-top: 40px; }
+            .step-card:not(:last-child)::after { display: none; }
+            .feature-grid { grid-template-columns: 1fr; gap: 20px; }
+            .btn { width: 100%; }
+            .header-content .btn-outline { display: none; } /* Oculta botão do header no mobile */
+            .float-share-btn { display: flex; } /* Exibe botão flutuante apenas no mobile */
+            .hero-image-mockup { max-width: 320px; }
+            .share-box { padding: 32px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-area">
+                <div class="logo-icon"></div>
+                Radar Poupe Mais
+            </div>
+            <a href="https://t.me/radarpoupemais" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                Acessar Grupo VIP
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 60px;">
+            <div class="hero-text">
+                <div class="hero-badge">⚡ Monitoramento 24h</div>
+                <h1>Receba as melhores ofertas antes que <span>o estoque acabe.</span></h1>
+                <p class="subtitle">Monitoramos o Mercado Livre, Shopee e Amazon sem parar. Receba cupons e descontos reais, direto no seu Telegram.</p>
+                
+                <ul class="hero-bullets">
+                    <li><span class="check-icon">✓</span> Ofertas reais (sem a metade do dobro)</li>
+                    <li><span class="check-icon">✓</span> Foco total em custo-benefício</li>
+                    <li><span class="check-icon">✓</span> Cupons exclusivos e relâmpago</li>
+                </ul>
+
+                <a href="https://t.me/radarpoupemais" target="_blank" rel="noopener noreferrer" class="btn btn-accent">
+                    👉 Quero entrar no grupo gratuito
+                </a>
+                <div class="social-proof">
+                    🔒 Comunidade organizada, livre de spam e pegadinhas.
+                </div>
+            </div>
+            
+            <!-- MOCKUP VISUAL -->
+            <div class="hero-image">
+                <div class="hero-image-mockup">
+                    <div class="mockup-header">
+                        <div class="mockup-avatar">%</div>
+                        <div style="line-height: 1.2;">
+                            <div style="font-weight: 700; font-size: 0.95rem;">Radar Poupe Mais</div>
+                            <div style="font-size: 0.75rem; color: #9CA3AF;">12k inscritos</div>
+                        </div>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="mockup-msg">
+                            <span>🚨 ALERTA DE PREÇO BAIXO</span>
+                            Smart TV LED 50" 4K UHD 
+                            <div class="price">R$ 1.599,00</div>
+                            <div style="font-size: 0.75rem; color: #4B5563; margin-bottom: 8px;">🔥 Menor preço dos últimos 6 meses! Válido com o cupom: RADARTV</div>
+                            <div style="background: var(--bg-light); border: 1px solid var(--border-color); padding: 8px; text-align: center; border-radius: 6px; font-weight: 600; color: var(--primary);">
+                                Comprar com Desconto
+                            </div>
+                        </div>
+                        <div class="mockup-msg" style="opacity: 0.7;">
+                            <span>📦 ACHADO NA SHOPEE</span>
+                            Fritadeira Air Fryer 4L
+                            <div class="price">R$ 259,00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>Como o Radar funciona?</h2>
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Você entra no grupo</h3>
+                    <p>Acesse nosso grupo exclusivo no Telegram. É 100% gratuito e não exige cadastro.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Nosso radar trabalha</h3>
+                    <p>Filtramos a internet e validamos promoções nas maiores lojas do Brasil em tempo real.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Você economiza</h3>
+                    <p>Receba o link direto no celular, clique e compre na loja oficial com o desconto aplicado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section class="features">
+        <div class="container">
+            <h2>Por que estar no nosso radar?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Alertas em Tempo Real</h3>
+                    <p>As melhores promoções esgotam em minutos. Saiba delas assim que entrarem no ar, antes da maioria.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Apenas o que Importa</h3>
+                    <p>Fim do flood de mensagens. Só enviamos alertas quando o preço e o produto realmente valem a pena.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛒</div>
+                    <h3>Grandes Lojas</h3>
+                    <p>Compre com segurança. Monitoramos gigantes como Mercado Livre, Amazon, Shopee e Magalu.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Grátis para Sempre</h3>
+                    <p>Você não paga assinaturas ou taxas. O acesso ao grupo e às ofertas é totalmente livre.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESPALHE O RADAR (SHARE DESKTOP/DEFAULT) -->
+    <section class="share-section">
+        <div class="container">
+            <div class="share-box">
+                <h3>Espalhe o Radar 📣</h3>
+                <p>Gostou da proposta? Ajude amigos e familiares a economizar enviando essa mensagem nos seus grupos.</p>
+                
+                <div class="share-text" id="shareTextContent">🚨 *Achados e Promoções Reais!* 
+Entra no *Radar Poupe Mais* e receba as melhores ofertas do Mercado Livre, Shopee e Amazon antes de todo mundo. Sem spam, só as top! 👇
+
+🔗 t.me/radarpoupemais</div>
+                
+                <button class="btn btn-copy" id="copyDesktopBtn">
+                    📋 Copiar Mensagem
+                </button>
+                <div class="copy-feedback" id="copyDesktopFeedback">Mensagem copiada com sucesso! ✅</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Dúvidas Frequentes</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">O grupo é pago?</button>
+                    <div class="faq-answer">
+                        <p>Não. A participação na comunidade Radar Poupe Mais é totalmente gratuita e sempre será.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Vou receber muitas mensagens por dia?</button>
+                    <div class="faq-answer">
+                        <p>Nossa curadoria é focada em qualidade, não em quantidade. Você não receberá "flood" ou spam, apenas os melhores achados e cupons reais do dia.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Como as compras são feitas?</button>
+                    <div class="faq-answer">
+                        <p>Nós apenas compartilhamos o link da oferta. Toda a compra, pagamento e entrega é feita diretamente no site da loja oficial (Mercado Livre, Amazon, Shopee, etc).</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Posso sair do grupo quando quiser?</button>
+                    <div class="faq-answer">
+                        <p>Sim. O controle é todo seu. Você pode silenciar ou sair do grupo do Telegram a qualquer momento com um único clique.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <div class="footer-logo-icon"></div>
+                Radar Poupe Mais
+            </div>
+            
+            <p class="disclaimer">
+                O Radar Poupe Mais não vende produtos. Apenas compartilhamos links de ofertas encontradas nas grandes varejistas da internet. Os preços e a disponibilidade dos produtos e cupons podem expirar rapidamente e são de responsabilidade das lojas.
+            </p>
+            
+            <div class="copyright">
+                &copy; <script>document.write(new Date().getFullYear())</script> Radar Poupe Mais. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOAT BUTTON SHARE (MOBILE) -->
+    <button class="float-share-btn" id="floatShareBtn" aria-label="Compartilhar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </svg>
+    </button>
+
+    <!-- MODAL SHARE (FALLBACK MOBILE) -->
+    <div class="modal-overlay" id="shareModal">
+        <div class="modal">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h3>Compartilhar Radar</h3>
+            <div class="modal-options">
+                <a href="#" id="waShare" target="_blank" class="modal-btn" style="color: #25D366; border-color: #25D366;">
+                    WhatsApp
+                </a>
+                <a href="#" id="tgShare" target="_blank" class="modal-btn" style="color: #0088cc; border-color: #0088cc;">
+                    Telegram
+                </a>
+                <button class="modal-btn copy-btn-modal" id="copyModalBtn">
+                    Copiar Mensagem
+                </button>
+            </div>
+            <div class="copy-feedback" id="copyModalFeedback" style="margin-top: 16px;">Mensagem copiada com sucesso! ✅</div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Dados de compartilhamento
+        const shareText = "🚨 *Achados e Promoções Reais!*\nEntra no *Radar Poupe Mais* e receba as melhores ofertas do Mercado Livre, Shopee e Amazon antes de todo mundo. Sem spam, só as top! 👇\n\n🔗 t.me/radarpoupemais";
+        const shareUrl = "https://t.me/radarpoupemais";
+        
+        // Configura Links do Modal Fallback (Mobile)
+        document.getElementById('waShare').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+        document.getElementById('tgShare').href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent("🚨 Achados e Promoções Reais! Entra no Radar Poupe Mais")}`;
+
+        // Lógica de Copiar
+        async function copyToClipboard(feedbackElementId) {
+            try {
+                await navigator.clipboard.writeText(shareText);
+                const feedback = document.getElementById(feedbackElementId);
+                feedback.style.display = 'block';
+                setTimeout(() => { feedback.style.display = 'none'; }, 3000);
+            } catch (err) {
+                alert('Não foi possível copiar automaticamente. Selecione o texto e copie manualmente.');
+            }
+        }
+
+        // Eventos de Copiar
+        document.getElementById('copyDesktopBtn').addEventListener('click', () => copyToClipboard('copyDesktopFeedback'));
+        document.getElementById('copyModalBtn').addEventListener('click', () => copyToClipboard('copyModalFeedback'));
+
+        // Lógica do Modal e Web Share (Mobile)
+        const floatBtn = document.getElementById('floatShareBtn');
+        const modal = document.getElementById('shareModal');
+        const closeBtn = document.getElementById('closeModal');
+
+        if (floatBtn) {
+            floatBtn.addEventListener('click', async () => {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: 'Radar Poupe Mais',
+                            text: '🚨 Achados e Promoções Reais! Entra no Radar Poupe Mais e receba as melhores ofertas.',
+                            url: shareUrl
+                        });
+                    } catch (err) {
+                        if (err.name !== 'AbortError') {
+                            modal.style.display = 'flex';
+                        }
+                    }
+                } else {
+                    modal.style.display = 'flex';
+                }
+            });
+        }
+
+        // Fechar Modal
+        closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+
+        // FAQ Acordeão
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                // Fechar todos
+                faqItems.forEach(i => i.classList.remove('active'));
+                // Se não estava ativo, abre
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
